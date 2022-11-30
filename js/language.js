@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // build and inject header template
     lang_access_header_wrap_el.id = 'translate-wrap';
-    document.body.insertBefore(lang_access_header_wrap_el, document.body.firstChild);
+    $("#top-bar .tw-text-sm").after(lang_access_header_wrap_el);
     document.getElementById('translate-wrap').insertAdjacentHTML("afterbegin", lang_access_template_header);
     // build and inject footer template
     lang_access_footer_wrap_el.id = 'footer-translate';
@@ -26,6 +26,9 @@ function processURL() {
     const subdomains = ['es.', 'zh.', 'fr.', 'ar.', 'bn.', 'yi.', 'ur.', 'ru.', 'pl.', 'ht.', 'it.', 'ko.'];
     // get current url with no protocol
     var host = window.location.host;
+    if ( host.indexOf('pantheonsite.io') >= 0 ) {
+        host = 'ag.ny.gov';
+    }
     // save path for link building
     var pathname = window.location.pathname;
     // full link without protocol
@@ -49,7 +52,11 @@ function processURL() {
 function languageAccessFooterWrapTemplate() {
     return `
         <div class="inside-wrap">
-            <h3><a href="https://www.ny.gov/web-translation-services">Translation Services</a></h3>
+            <h3><svg style="height: 24px;width: 24px;" class="tw-fill-inherit">
+                    <use xlink:href="/themes/composer/oag/images/sprites/eva.svg#globe"></use>
+                </svg>
+                <a href="#">Translation Services</a>
+            </h3>
             <p>This page is available in other languages</p>
             <div class="translation-menu" id="translation-menu">
 
@@ -67,7 +74,11 @@ function languageAccessTemplate(site, id) {
                 <ul class="smt-menu">
                     <li class="smt-trigger">
                         <a class="smt-trigger-link" tabindex="0">
-                            <span class="smt-lang" id="${id}">Translate</span>
+                            <span class="smt-lang" id="${id}">
+                            <svg style="height: 24px;width: 24px;" class="tw-fill-inherit">
+                            <use xlink:href="/themes/composer/oag/images/sprites/eva.svg#globe"></use>
+                            </svg> Translate <svg style="height: 24px;width: 24px;" class="tw-fill-inherit">
+  <use xlink:href="/themes/composer/oag/images/sprites/eva.svg#chevron-down"></use></svg>
                         </a>
                         <ul class="language-links">
                             <li class="smt-item">
@@ -170,11 +181,11 @@ $(document).ready(function() {
     var expandCollapse = function () {
         if ($(window).width() < 768) {
             $(function () {
-            $(".footer-translate .inside-wrap .translation-menu ul.smt-menu ul").css("display", "none");
+                $(".footer-translate .inside-wrap .translation-menu ul.smt-menu ul").css("display", "none");
             });
         } else {
             $(function () {
-            $(".footer-translate .inside-wrap .translation-menu ul.smt-menu ul").css("display", "flex");
+                $(".footer-translate .inside-wrap .translation-menu ul.smt-menu ul").css("display", "flex");
             });
         }
     };

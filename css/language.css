@@ -500,3 +500,45 @@ div#translate-wrap {
 /* body.right-to-left .nygov-universal-notification .nygov-emergency-title {
   font-size: 10em !important;
 } */ 
+
+/* OAG CSS changes */
+   div#translate-wrap ul.smt-menu li {
+        margin: 0;
+    }
+    div#translate-wrap div.translate-bar .smt-selector {
+        padding-right: 0;
+    }
+    .translate-bar svg,
+    .footer-translate svg {
+        display: inline;
+        fill: #fff;
+    }
+
+    .chevron {
+        transition: transform .2s ease-in-out;
+    }
+    .smt-trigger-link.open .chevron {
+        transform: rotate(-180deg);
+    }
+
+    .footer-translate .inside-wrap .translation-menu select {
+        background-color: #333;
+    }
+    @media all and (min-width: 0px) {
+        .footer-translate .inside-wrap {
+            max-width: 1536px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+    @media all and (min-width: 768px) {
+        .footer-translate .inside-wrap {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+    @media (min-width: 1280px) {
+        div#translate-wrap div.translate-bar .smt-selector {
+            padding-right: 0;
+        }
+    }
